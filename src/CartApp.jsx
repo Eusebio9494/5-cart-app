@@ -1,76 +1,41 @@
+import { useEffect, useState } from "react"
+import { getProducts } from "./service/getProducts";
 
 export const CartApp = () => {
 
+    const [products, setProducts] = useState([]);
+
+    useEffect(
+        () => {
+            setProducts(getProducts());
+        }, []);
+
     return (
         <>
-        
-        <div className="container">
-            <h1 className="m-3">Cart App</h1>
-            <div className="row">
-                <div className="col-4 my-2">
-                    <div className="card">
-                        <div className="card-body">
-                            <h5 className="card-title">Teclado Mecanico</h5>
-                            <p className="card-text">Teclado Mecanico con luces RGB switches cherry red</p>
-                            <p className="card-text">$300</p>
-                            <button className="btn btn-primary">Agregar al carrito</button>
-                        </div>
-                    </div>
-                </div>
-                <div className="col-4 my-2">
-                    <div className="card">
-                        <div className="card-body">
-                            <h5 className="card-title">Teclado Mecanico</h5>
-                            <p className="card-text">Teclado Mecanico con luces RGB switches cherry red</p>
-                            <p className="card-text">$300</p>
-                            <button className="btn btn-primary">Agregar al carrito</button>
-                        </div>
-                    </div>
-                </div>
-                <div className="col-4 my-2">
-                    <div className="card">
-                        <div className="card-body">
-                            <h5 className="card-title">Teclado Mecanico</h5>
-                            <p className="card-text">Teclado Mecanico con luces RGB switches cherry red</p>
-                            <p className="card-text">$300</p>
-                            <button className="btn btn-primary">Agregar al carrito</button>
-                        </div>
-                    </div>
-                </div>
-                <div className="col-4 my-2">
-                    <div className="card">
-                        <div className="card-body">
-                            <h5 className="card-title">Teclado Mecanico</h5>
-                            <p className="card-text">Teclado Mecanico con luces RGB switches cherry red</p>
-                            <p className="card-text">$300</p>
-                            <button className="btn btn-primary">Agregar al carrito</button>
-                        </div>
-                    </div>
-                </div>
-                <div className="col-4 my-2">
-                    <div className="card">
-                        <div className="card-body">
-                            <h5 className="card-title">Teclado Mecanico</h5>
-                            <p className="card-text">Teclado Mecanico con luces RGB switches cherry red</p>
-                            <p className="card-text">$300</p>
-                            <button className="btn btn-primary">Agregar al carrito</button>
-                        </div>
-                    </div>
-                </div>
-                <div className="col-4 my-2">
-                    <div className="card">
-                        <div className="card-body">
-                            <h5 className="card-title">Teclado Mecanico</h5>
-                            <p className="card-text">Teclado Mecanico con luces RGB switches cherry red</p>
-                            <p className="card-text">$300</p>
-                            <button className="btn btn-primary">Agregar al carrito</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <div className="my-4 w-50">
-                <h3>Carro de compras</h3>
+            <div className="container">
+
+                <h3>Cart App</h3>
+                <div className="row">
+                    {products.map(prod => (
+
+                        <div className="col-4 my-2" key={prod.id}>
+                            <div className="card">
+                                <div className="card-body">
+                                    <h5 className="card-title">{prod.name}</h5>
+                                    <p className="card-text">{prod.description}</p>
+                                    <p className="card-text">${prod.price}</p>
+                                    <button className="btn btn-primary">Agregar al carrito</button>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+
+                </div>
+
+                <div className="my-4 w-50">
+                    <h3>Carro de compras</h3>
                     <table className="table table-hover tabler-striped">
                         <thead>
                             <tr>
@@ -99,8 +64,8 @@ export const CartApp = () => {
                         </tfoot>
 
                     </table>
+                </div>
             </div>
-        </div>
         </>
     )
 }
