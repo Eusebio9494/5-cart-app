@@ -101,7 +101,7 @@ export const CartApp = () => {
 
                 <div className="my-3 w-50">
 
-                    <CartView items={items} handlerDeleteItem={deleteItem => (handlerDeleteProduct(deleteItem))} />
+                    {items?.length <= 0 ? <p>No hay productos en el carrito</p> : <CartView items={items} handlerDeleteItem={deleteItem => (handlerDeleteProduct(deleteItem))} />}
                 </div>
             </div>
         </>

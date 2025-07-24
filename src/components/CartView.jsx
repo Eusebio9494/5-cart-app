@@ -30,7 +30,7 @@ const CartView = ({ items, handlerDeleteItem }) => {
                             <td>{item.quantity * item.products.price}</td>
                             <td>
                                 <button
-                                    className="btn btn-primary m-3"
+                                    className="btn btn-danger btn-sm"
                                     onClick={() => onDeleteItem(item.products.id)}>
                                     eliminar</button></td>
                         </tr>
