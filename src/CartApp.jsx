@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {useState } from "react";
 import CartView from "./components/CartView"
 import { CatalogView } from "./components/CatalogView.jsx"
 

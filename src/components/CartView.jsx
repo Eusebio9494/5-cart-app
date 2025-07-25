@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { calculateTotal } from '../service/getProducts';
 
 const CartView = ({ items, handlerDeleteItem }) => {
-    console.log("Items data:", items)
 
+
+    const [total, setTotal] = useState(0);
+
+    useEffect(() => {
+        console.log("Items data:", items)
+        setTotal(calculateTotal(items));
+    }, [items]);
 
     const onDeleteItem = (id) => {
-         handlerDeleteItem(id)
+        handlerDeleteItem(id)
     }
     return (
         <>
@@ -39,7 +46,7 @@ const CartView = ({ items, handlerDeleteItem }) => {
                 <tfoot>
                     <tr>
                         <td colSpan="4" className="text-end fw-bold">Total</td>
-                        <td colSpan="4" className="text-end fw-bold">12345</td>
+                        <td colSpan="4" className="text-end fw-bold">{total}</td>
                     </tr>
 
                 </tfoot>
