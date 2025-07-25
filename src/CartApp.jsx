@@ -23,6 +23,7 @@ export const CartApp = () => {
         const hasItem = items.find((i) => i.products.id === infoProduct.id);
         console.log(hasItem)
         if (hasItem) {
+            console.log('Incrementar cantidad')
             dispatch(
                 {
                     type: 'UpdateProduct',
@@ -30,12 +31,13 @@ export const CartApp = () => {
                 }
             )
         } else {
-            setItems([...items,
-            {
-                products: infoProduct,
-                quantity: 1,
-            }
-            ])
+            console.log('Agregar nuevo producto')
+            dispatch(
+                {
+                    type: 'AddProduct',
+                    payload: infoProduct
+                }
+            )
         }
     }
 
