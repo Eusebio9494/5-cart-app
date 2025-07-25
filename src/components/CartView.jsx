@@ -9,6 +9,7 @@ const CartView = ({ items, handlerDeleteItem }) => {
     useEffect(() => {
         console.log("Items data:", items)
         setTotal(calculateTotal(items));
+        sessionStorage.setItem("cartItems", JSON.stringify(items));
     }, [items]);
 
     const onDeleteItem = (id) => {

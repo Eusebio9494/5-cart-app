@@ -2,18 +2,10 @@ import {useState } from "react";
 import CartView from "./components/CartView"
 import { CatalogView } from "./components/CatalogView.jsx"
 
-const itemsProduct = [
-    // {
-    //     products: {
-    //     id: 1,
-    //     name: 'Teclado Mecanico RGB',
-    //     description: 'Teclado Mecanico con luces RGB switches red',
-    //     price: 1000
-    // },
-    //     total: 0
-    //     quantity: 0
-    // }
-]
+//? Extrae los productos del carrito desde sessionStorage
+//? Si no hay productos, se inicializa como un arreglo vacío
+// const itemsProduct = sessionStorage.getItem("cartItems") ? JSON.parse(sessionStorage.getItem("cartItems")) : [];
+const itemsProduct = JSON.parse(sessionStorage.getItem("cartItems")) || []; 
 export const CartApp = () => {
 
 
