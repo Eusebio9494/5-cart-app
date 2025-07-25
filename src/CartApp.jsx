@@ -54,22 +54,12 @@ export const CartApp = () => {
      * @param {number|string} deleteProductId - El ID del producto a eliminar o reducir su cantidad.
      */
     const handlerDeleteProduct = (deleteProductId) => {
-        setItems(
-            items
-                .map((i) => {
-                    if (i.products.id === deleteProductId) {
-                        // Si la cantidad es mayor a 1, la reducimos
-                        if (i.quantity > 1) {
-                            return { ...i, quantity: i.quantity - 1 };
-                        }
-                        // Si la cantidad es 1, retornamos null para eliminarlo después
-                        return null;
-                    }
-                    return i;
-                })
-                
-                .filter(i => i !== null)
-        );
+        dispatch(
+            {
+                type: 'RemoveProduct',
+                payload: deleteProductId
+            }
+        )
     }
 
 

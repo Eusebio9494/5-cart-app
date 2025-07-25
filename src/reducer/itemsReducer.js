@@ -20,7 +20,7 @@ export const itemsReducer = (state = [], action) => {
         case 'RemoveProduct':
             return state
                 .map((i) => {
-                    if (i.products.id === action.payload.id) {
+                    if (i.products.id === action.payload) {
                         // Si la cantidad es mayor a 1, la reducimos
                         if (i.quantity > 1) {
                             return { ...i, quantity: i.quantity - 1 };
