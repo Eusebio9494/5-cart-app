@@ -9,7 +9,7 @@ const CartView = ({ items, handlerDeleteItem }) => {
     useEffect(() => {
         console.log("Items data:", items)
         setTotal(calculateTotal(items));
-        //? Guarda los productos del carrito en sessionStorage
+        //* Guarda los productos del carrito en sessionStorage objeto->string json
         sessionStorage.setItem("cartItems", JSON.stringify(items));
     }, [items]);
 

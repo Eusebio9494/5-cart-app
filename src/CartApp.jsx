@@ -1,15 +1,20 @@
-import {useState } from "react";
+import {useReducer, useState } from "react";
 import CartView from "./components/CartView"
 import { CatalogView } from "./components/CatalogView.jsx"
+import { itemsReducer } from "./reducer/itemsReducer.js";
 
-//? Extrae los productos del carrito desde sessionStorage
-//? Si no hay productos, se inicializa como un arreglo vacío
+//* Extrae los productos del carrito desde sessionStorage string json -> objeto
+//* Si no hay productos, se inicializa como un arreglo vacío
 // const itemsProduct = sessionStorage.getItem("cartItems") ? JSON.parse(sessionStorage.getItem("cartItems")) : [];
 const itemsProduct = JSON.parse(sessionStorage.getItem("cartItems")) || []; 
 export const CartApp = () => {
 
 
-    const [items, setItems] = useState(itemsProduct);
+    //* Version con useState: const [items, setItems] = useState(itemsProduct);
+    /* Se utiliza useReducer para manejar el estado del carrito de compras.
+       itemsReducer es la función reductora que define cómo se actualiza el estado.
+       itemsProduct es el estado inicial, obtenido de sessionStorage o un arreglo vacío.*/
+    const [items, dispatch] = useReducer(itemsReducer, itemsProduct);
 
 
     const handlerAddProduct = (infoProduct) => {
@@ -18,28 +23,12 @@ export const CartApp = () => {
         const hasItem = items.find((i) => i.products.id === infoProduct.id);
         console.log(hasItem)
         if (hasItem) {
-            // //* 1a forma de actualizar
-            // setItems([
-            //     // Remueve del arreglo el item por actualizar
-            //     ...items.filter((i) => i.products.id !== infoProduct.id),
-            //     // agregando una versión del mismo producto con cantidad actualizada
-            //     {
-            //         products: infoProduct,
-            //         quantity: hasItem.quantity + 1,
-            //     }
-
-            // ])
-            //* 2a forma de actualizar
-            setItems(
-                // Se usa map(inmutable) para traer el arreglo y modificarlo directamente si se cumple la condición indicada
-                items.map((i) => {
-                    if (i.products.id === infoProduct.id) {
-                        i.quantity = i.quantity + 1
-                    }
-                    // devuelve el objeto/arreglo modificado
-                    return i;
-                })
-            );
+            dispatch(
+                {
+                    type: 'UpdateProduct',
+                    payload: infoProduct
+                }
+            )
         } else {
             setItems([...items,
             {
