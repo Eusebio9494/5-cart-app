@@ -1,14 +1,15 @@
+import { AddProduct, RemoveProduct, UpdateProduct } from "../Constantes/Constants";
 
 export const itemsReducer = (state = [], action) => {
     switch (action.type) {
-        case 'AddProduct':
+        case AddProduct:
             return [...state,
             {
                 products: action.payload,
                 quantity: 1,
             }
             ];
-        case 'UpdateProduct':
+        case UpdateProduct:
             // Se usa map(inmutable) para traer el arreglo y modificarlo directamente si se cumple la condición indicada
             return state.map((i) => {
                 if (i.products.id === action.payload.id) {
@@ -17,7 +18,7 @@ export const itemsReducer = (state = [], action) => {
                 // devuelve el objeto/arreglo modificado
                 return i;
             });
-        case 'RemoveProduct':
+        case RemoveProduct:
             return state
                 .map((i) => {
                     if (i.products.id === action.payload) {
