@@ -1,11 +1,11 @@
 import CartView from "./components/CartView"
 import { CatalogView } from "./components/CatalogView.jsx"
-import {useCarItem} from "./hooks/useCarItem.js";
+import {useItemCart} from "./hooks/useItemCart.js";
 
 
 export const CartApp = () => {
 
-    const { items, handlerAddProduct, handlerDeleteProduct } = useCarItem();
+    const { items, handlerAddProduct, handlerDeleteProduct } = useItemCart();
 
     return (
         <>

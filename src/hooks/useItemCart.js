@@ -8,7 +8,7 @@ import { AddProduct, RemoveProduct, UpdateProduct } from "../Constantes/Constant
 // const itemsProduct = sessionStorage.getItem("cartItems") ? JSON.parse(sessionStorage.getItem("cartItems")) : [];
 const itemsProduct = JSON.parse(sessionStorage.getItem("cartItems")) || []; 
 
-export const useCarItem = () => {
+export const useItemCart = () => {
     
   //* Version con useState: const [items, setItems] = useState(itemsProduct);
     /* Se utiliza useReducer para manejar el estado del carrito de compras.
