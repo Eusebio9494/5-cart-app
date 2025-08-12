@@ -2,6 +2,7 @@ import {useReducer, useState } from "react";
 import CartView from "./components/CartView"
 import { CatalogView } from "./components/CatalogView.jsx"
 import { itemsReducer } from "./reducer/itemsReducer.js";
+import { AddProduct, RemoveProduct, UpdateProduct } from "./Constantes/Constants.js";
 
 //* Extrae los productos del carrito desde sessionStorage string json -> objeto
 //* Si no hay productos, se inicializa como un arreglo vacío
@@ -26,7 +27,7 @@ export const CartApp = () => {
             console.log('Incrementar cantidad')
             dispatch(
                 {
-                    type: 'UpdateProduct',
+                    type: UpdateProduct,
                     payload: infoProduct
                 }
             )
@@ -34,7 +35,7 @@ export const CartApp = () => {
             console.log('Agregar nuevo producto')
             dispatch(
                 {
-                    type: 'AddProduct',
+                    type: AddProduct,
                     payload: infoProduct
                 }
             )
@@ -56,7 +57,7 @@ export const CartApp = () => {
     const handlerDeleteProduct = (deleteProductId) => {
         dispatch(
             {
-                type: 'RemoveProduct',
+                type: RemoveProduct,
                 payload: deleteProductId
             }
         )
