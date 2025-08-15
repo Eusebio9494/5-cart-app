@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {useReducer, useState } from "react";
 import { itemsReducer } from "../reducer/itemsReducer.js";
 import { AddProduct, RemoveProduct, UpdateProduct } from "../Constantes/Constants.js";
@@ -8,14 +8,20 @@ import { AddProduct, RemoveProduct, UpdateProduct } from "../Constantes/Constant
 // const itemsProduct = sessionStorage.getItem("cartItems") ? JSON.parse(sessionStorage.getItem("cartItems")) : [];
 const itemsProduct = JSON.parse(sessionStorage.getItem("cartItems")) || []; 
 
+//* Hook para inicializar el estado leyendo de sessionStorage
 export const useItemCart = () => {
-    
-  //* Version con useState: const [items, setItems] = useState(itemsProduct);
-    /* Se utiliza useReducer para manejar el estado del carrito de compras.
-       itemsReducer es la función reductora que define cómo se actualiza el estado.
-       itemsProduct es el estado inicial, obtenido de sessionStorage o un arreglo vacío.*/
-    const [items, dispatch] = useReducer(itemsReducer, itemsProduct);
 
+    
+    //* Version con useState: const [items, setItems] = useState(itemsProduct);
+    /* Se utiliza useReducer para manejar el estado del carrito de compras.
+    itemsReducer es la función reductora que define cómo se actualiza el estado.
+    itemsProduct es el estado inicial, obtenido de sessionStorage o un arreglo vacío.*/
+    const [items, dispatch] = useReducer(itemsReducer, itemsProduct);
+    
+    useEffect(() => {
+        //* Guarda los productos del carrito en sessionStorage objeto->string json
+        sessionStorage.setItem("cartItems", JSON.stringify(items));
+    }, [items])
 
     const handlerAddProduct = (infoProduct) => {
 

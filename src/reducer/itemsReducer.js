@@ -10,13 +10,12 @@ export const itemsReducer = (state = [], action) => {
             }
             ];
         case UpdateProduct:
-            // Se usa map(inmutable) para traer el arreglo y modificarlo directamente si se cumple la condición indicada
+            // Usar spread operator para no mutar el objeto original
             return state.map((i) => {
-                if (i.products.id === action.payload.id) {
-                    i.quantity = i.quantity + 1
-                }
-                // devuelve el objeto/arreglo modificado
-                return i;
+            if (i.products.id === action.payload.id) {
+                return { ...i, quantity: i.quantity + 1 };
+            }
+            return i;
             });
         case RemoveProduct:
             return state

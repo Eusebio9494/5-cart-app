@@ -4,9 +4,9 @@ import { CartApp } from './CartApp'
 import { BrowserRouter } from 'react-router-dom'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <BrowserRouter>
       <CartApp />
     </BrowserRouter>
-  </React.StrictMode>
+  // </React.StrictMode>
 )
