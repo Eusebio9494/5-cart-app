@@ -1,10 +1,13 @@
 
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const ProductCartView = ({id, name, description, price, handler}) => {
     //La variable infoProduct se convertira en un objeto, formado por los argumentos que se envian desde el evento onClick del card
+    const navigate = useNavigate()
     const onAddProduct = (infoProduct) => {
         handler(infoProduct)
+        navigate("/cart")
     }
     return (
         <div>
