@@ -1,7 +1,8 @@
-import { Route, Routes, Link } from "react-router-dom";
+import { Route, Routes} from "react-router-dom";
 import CartView from "./components/CartView"
 import { CatalogView } from "./components/CatalogView.jsx"
 import { useItemCart } from "./hooks/useItemCart.js";
+import { Navbar } from "./components/Navbar.jsx";
 
 
 export const CartApp = () => {
@@ -10,18 +11,10 @@ export const CartApp = () => {
 
     return (
         <>
-
+            <Navbar />
             <div className="container my-4">
 
                 <h3>Cart App</h3>
-                <div className="mb-4">
-                    <Link to="/catalog" className="btn btn-outline-primary me-2">
-                        Catálogo
-                    </Link>
-                    <Link to="/cart" className="btn btn-outline-success">
-                        Carrito ({items.length})
-                    </Link>
-                </div>
                 <Routes>
                     <Route
                         path="/catalog"
