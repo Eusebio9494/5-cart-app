@@ -5,10 +5,12 @@ import ProductCartView from "./ProductCartView";
 export const CatalogView = ({handler}) => {
 
         const [products, setProducts] = useState([]);
+        const [isLoading, setIsLoading] = useState(true)
 
         const findAll = async() => {
             const response = await getProducts();
             setProducts(response);
+            setIsLoading(false);
         }
 
 
@@ -20,6 +22,11 @@ export const CatalogView = ({handler}) => {
 
     return(
         <>
+
+        {
+            isLoading &&
+            <div className="alert alert-info">Cargando</div>
+        }
         <div className="row">
                     {products.map(prod => (
 
