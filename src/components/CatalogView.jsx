@@ -6,11 +6,15 @@ export const CatalogView = ({handler}) => {
 
         const [products, setProducts] = useState([]);
 
+        const findAll = async() => {
+            const response = await getProducts();
+            setProducts(response);
+        }
 
 
     useEffect(
         () => {
-            setProducts(getProducts());
+            findAll();
         }, []);
 
 
